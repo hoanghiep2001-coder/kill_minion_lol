@@ -48,6 +48,8 @@ cc.Class({
         _this.node.on("minion_die", function(e) {
             _this.minionsCount--
         }, _this)
+
+        _this.minionLayer.ndoe.setContentSize();
     },
 
     initGame: function() {
