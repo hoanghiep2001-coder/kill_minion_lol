@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "5d7af709-d75a-493d-b16e-6519a4ac408e",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 628,
+  "height": 647,
+  "platformSettings": {},
+  "subMetas": {
+    "minion-mage": {
+      "ver": "1.0.6",
+      "uuid": "d80ece89-1b7a-473a-89e3-4c9e15a3fc1e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "5d7af709-d75a-493d-b16e-6519a4ac408e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 11,
+      "trimY": 11,
+      "width": 606,
+      "height": 625,
+      "rawWidth": 628,
+      "rawHeight": 647,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
