@@ -38,9 +38,9 @@ cc.Class({
           isLaunch: false,
     },
 
-    start () {
-        const minionsCount = 0;
-        const delta = 0;
+    onLoad: function () {
+        // const minionsCount = 0;
+        // const delta = 0;
         const _this = this
 
         // run the game after 1s 
@@ -98,7 +98,6 @@ cc.Class({
       minionLayer.addChild(minion);
 
       this.minionsCount++;
-
     },
 
     newMinionPosition: function() {
