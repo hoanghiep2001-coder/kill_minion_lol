@@ -29,14 +29,18 @@ cc.Class({
             default: null,
             type: cc.Layout
           },
+          minTempo: 0,
+          maxTempo: 0,
           life: 0,
           score: 0,
           maxLife: 0,
+          maxMinions: 3,
           isLaunch: false,
     },
 
     start () {
-        this.minionsCount = 0;
+        const minionsCount = 0;
+        const delta = 0;
         const _this = this
 
         // run the game after 1s 
@@ -46,17 +50,67 @@ cc.Class({
 
         // create minion to kill
         _this.node.on("minion_die", function(e) {
-            _this.minionsCount--
+            minionsCount--
         }, _this)
 
-        _this.minionLayer.ndoe.setContentSize();
+        _this.minionLayer.node.setContentSize(_this.background.width, _this.background.height);
     },
 
     initGame: function() {
         this.life = this.maxLife
         this.score = 0;
-        console.log(this.lifeLabel)
         this.lifeLabel.string = "x " + this.life ;
         this.isLaunch = true
+    },
+
+    spawMinion: function(data) {
+      if(this.isLaunch === false) {
+        return;
+      }
+
+      if(this.minionsCount > this.maxMinions) {
+        return;
+      }
+
+      this.delta += data;
+      if(this.delta < 1) return;
+
+      this.delta = 0;
+      const minionLayer = this.minionLayer.node;
+      const winsize = minionLayer.getContentSize();
+      const minionAmount = this.minions.length - 1;
+
+      const minion = cc.instantiate(this.minions[Math.ceil(minionAmount * Math.random())]);
+      minion.setPosition(this.newMinionPosition());
+
+      const tempo = Math.random() * this.maxTempo + this.minTempo;
+
+      const _this = this;
+
+      const moveby = cc.moveBy(tempo, 0, -winsize.height - 30);
+
+      const sequence = cc.sequence(moveby, cc.removeSelf(true), cc.callFunc(function() {
+        _this.minionsCount--;
+      }, _this));
+
+      minion.runAction(sequence);
+
+      minionLayer.addChild(minion);
+
+      this.minionsCount++;
+
+    },
+
+    newMinionPosition: function() {
+      const winsize = this.minionLayer.node.getContentSize();
+
+      const x = winsize.width * Math.random();
+      const y = winsize.height - 100;
+
+      return cc.v2(x,y)
+    },
+
+    update: function(data) {
+      this.spawMinion(data)
     }
 });
